@@ -1,0 +1,50 @@
+import os.path
+from os import path
+
+print("Welcome to the inventory")
+
+def main():
+    ask_info()
+
+def ask_info():
+    items = []
+
+    print("Enter items to add to the inventory list. Type 'done' when finished.")
+
+    while True:
+        item = input("Enter item: ")
+        if item.lower() == "done":
+            break
+        items.append(item)
+
+    while True:
+        print("You've entered the following items: ")
+        for i, item in enumerate(items, start=1):
+            print(f"{i}. {item}")
+
+        if not items:
+            print("The list is now empty.")
+            break
+
+        choice = input("Would you like to delete an item? (yes/no): ")
+        if choice == "yes":
+            try:
+                delete_index = int(input("Enter the number of the item to delete: "))
+                if 1 <= deletething <= len(items):
+                    removeditem = items.pop(deletething - 1)
+                    print(f"Removed: {removeditem}")
+                else:
+                    print("Invalid number. Please choose a valid item number.")
+            except ValueError:
+                print("Please enter a valid number.")
+        elif choice == "no":
+            break
+        else:
+            print("Please enter 'yes' or 'no'.")
+
+    print("Final list:")
+    for i, item in enumerate(items, start=1):
+        print(f"{i}. {item}")
+
+if __name__ == "__main__":
+    main()
