@@ -1,0 +1,30 @@
+import sys
+import os
+
+def main():
+    AskInfo();
+
+def AskInfo():
+    
+    fileDir = os.path.dirname(os.path.realpath(__file__))
+    option = input("Press 1 to access inventory: ")
+
+    match option:
+        case "1":
+            filename = "Inventory.py"
+        case _:
+            print("Not a choice, please try again.")
+            AskInfo();
+
+    filepath = os.path.join(fileDir, filename)
+
+    filenamepath = {
+        "__file__": filepath,
+        "__name__": "__main__",
+    }
+
+    with open(filepath, "rb") as file:
+        exec(compile(file.read(), filepath, "exec"), filenamepath)
+
+if __name__ == "__main__":
+    main()
